@@ -1,13 +1,77 @@
 body {
-  margin: 0;
+  background-color: #1a1a1a;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.login, .register{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.divForm{
+  width: 50%;
+  padding-bottom: 1em;
+}
+.formGlobal .labelGlobal{
+  display: flex;
+  width: 90%;
+  margin: auto;
+  border-bottom: 1px solid #fff;
+  padding: .2em;
+  margin-bottom: 2.3em;
+}
+.formGlobal .labelGlobal input[type='number'],
+.formGlobal .labelGlobal input[type='password'],
+.formGlobal .labelGlobal input[type='text']{
+  flex: 1;
+  padding: .3em;
+  font-size: 1em;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+.formGlobal .labelGlobal input[type='number']::placeholder,
+.formGlobal .labelGlobal input[type='password']::placeholder,
+.formGlobal .labelGlobal input[type='text']::placeholder{
+  color: rgb(219, 219, 219);
+}
+.formGlobal .labelGlobal svg{
+  font-size: 1.5em;
+  margin-left: .2em;
+  color: #fff;
+}
+.formGlobal input[type='submit']{
+  padding: .5em 1.5em .5em 1.5em;
+  width: 40%;
+  border: 1px solid #fff;
+  background-color: transparent;
+  transition: .3s;
+  color: #fff;
+  cursor: pointer;
+}
+.formGlobal input[type='submit']:hover{
+  width: 45%;
+}
+.btnNavigationAuth{
+  margin-top: 1.3em;
+  color: #ddd;
+}
+.btnNavigationAuth a{
+  text-decoration: none;
+  color: rgb(133, 133, 133);
+  transition: .2s;
+}
+.btnNavigationAuth a:hover{
+  color: #ddd;
+}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media (max-width: 770px) {
+  .divForm{
+    width: 100%;
+  }
 }

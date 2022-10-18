@@ -1,0 +1,11 @@
+.pMsg{
+    font-size: 1.2em;
+    margin-bottom: .8em;
+    margin-top: .8em;
+}
+.error{
+    color: #f00;
+}
+.success{
+    color: #0f0;
+}
