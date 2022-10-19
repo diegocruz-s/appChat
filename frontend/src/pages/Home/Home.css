@@ -1,0 +1,52 @@
+.home .headHome{
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    background-color: rgb(36, 36, 36);
+    padding: .5em;
+    margin-bottom: 2em;
+}
+.home .headHome h1{
+    margin: 0;
+    margin-bottom: .2em;
+}
+
+.home .groups .group{
+    margin-bottom: 2em;
+    padding-left: 1em;
+}
+.home .groups .group a{
+    text-decoration: none;
+    color: #fff;
+}
+.groupName{
+    font-size: 2em;
+}
+.numberContact{
+    font-size: 1.2em;
+}
+.logoutBtn{
+    position: fixed;
+    bottom: 1.5em;
+    right: 1.5em;
+    padding: 1em;
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    border: none;
+    background-color: rgba(0,0,0,.4);
+    color: rgb(110, 110, 110);;
+    cursor: pointer;
+    transition: .3s;
+}
+.logoutBtn:hover{
+    color: #fff;
+}
+.logoutBtn svg{
+    font-size: 2em;
+}
+
+@media (max-width: 750px) {
+    .logoutBtn{
+        color: #fff;
+    }
+}

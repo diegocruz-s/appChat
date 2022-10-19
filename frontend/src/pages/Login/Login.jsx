@@ -72,7 +72,7 @@ const Login = () => {
                     { loading ? (
                         <input type="submit" className="submitForm" value="Aguarde..." disabled />
                     ) : (
-                        <input type="submit" className="submitForm" value="Cadastrar" />
+                        <input type="submit" className="submitForm" value="Entrar" />
                     ) }
 
                 </form>
