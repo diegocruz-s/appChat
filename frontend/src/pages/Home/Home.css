@@ -9,6 +9,64 @@
     margin: 0;
     margin-bottom: .2em;
 }
+.btnNewGroup{
+    position: fixed;
+    top: 4.5em;
+    right: .7em;
+    padding: .7em;
+    border-radius: 50%;
+    width: 2.7em;
+    height: 2.7em;
+    border: none;
+    background-color: rgba(0,0,0);
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .3s;
+    z-index: 10;
+}
+.btnNewGroup:hover{
+    border: 1px solid rgb(189, 189, 189);
+}
+.divFormCreate{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.6);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.divFormCreate .newGroup{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    text-align: center;
+}
+.divFormCreate .newGroup input{
+    padding: .5em;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background-color: transparent;
+    width: 100%;
+    margin-top: 2em;
+    color: #fff;
+}
+.divFormCreate .newGroup input::placeholder{
+    color: #ddd;
+}
+.divFormCreate .newGroup input[type='submit']{
+    width: 80%;
+    margin: auto;
+    margin-top: 2em;
+    transition: .3s;
+    cursor: pointer;
+}
+.divFormCreate .newGroup input[type='submit']:hover{
+    width: 85%;
+}
 
 .home .groups .group{
     margin-bottom: 2em;
@@ -23,30 +81,4 @@
 }
 .numberContact{
     font-size: 1.2em;
-}
-.logoutBtn{
-    position: fixed;
-    bottom: 1.5em;
-    right: 1.5em;
-    padding: 1em;
-    border-radius: 50%;
-    width: 4em;
-    height: 4em;
-    border: none;
-    background-color: rgba(0,0,0,.4);
-    color: rgb(110, 110, 110);;
-    cursor: pointer;
-    transition: .3s;
-}
-.logoutBtn:hover{
-    color: #fff;
-}
-.logoutBtn svg{
-    font-size: 2em;
-}
-
-@media (max-width: 750px) {
-    .logoutBtn{
-        color: #fff;
-    }
 }

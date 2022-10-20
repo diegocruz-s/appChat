@@ -38,7 +38,6 @@ const AuthController = {
                 token,
                 userName: user.name,
                 userNumber: user.number,
-                image: user.image
             })
 
         } catch (error) {

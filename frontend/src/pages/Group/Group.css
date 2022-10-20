@@ -1,0 +1,104 @@
+.headGroup{
+    text-align: center;
+    color: #fff;
+    background-color: rgb(36, 36, 36);
+    border-bottom: 1px solid #fff;
+    padding: 1em 0 1em 0;
+    margin-bottom: 2em;
+}
+.allMsgs{
+    height: 70vh;
+    overflow: auto;
+    background-color: #1c1c1c;
+}
+.allMsgs::-webkit-scrollbar{
+    width: .5em;
+}
+.allMsgs::-webkit-scrollbar-track{
+    background-color: rgb(36, 36, 36);
+    border-radius: .2em;
+}
+.allMsgs::-webkit-scrollbar-thumb{
+    background-color: rgb(163, 163, 163);
+    border-radius: .2em;
+}
+.msg{
+    width: 100%;
+    display: flex;
+    margin-bottom: 1em;
+}
+.msg.msgUserLogged{
+    justify-content: flex-end;
+    text-align: end;
+    background-color: transparent;
+}
+.msg.notUserLogged{
+    justify-content: flex-start;
+}
+.msg.msgUserLogged  .contentMsg{
+    border: 1px solid rgb(0, 185, 15);
+}
+.msg.notUserLogged  .contentMsg{
+    border: 1px solid rgb(255, 255, 255);
+}
+.contentMsg{
+    border-radius: 1em;
+    margin: .2em;
+    margin-right: .5em;
+    padding: .6em;
+    color: #fff;
+    min-width: 30%;
+    word-break: break-all;
+    max-width: 48%;
+}
+.msgUserLogged{
+    color: #fff;
+}
+.notUserLogged{
+    color: rgb(25, 0, 255);
+}
+.nomsg{
+    color: #fff;
+    text-align: center;
+    margin-top: 1em;
+}
+.formAddMsg{
+    width: 50%;
+    margin: auto;
+    margin-top: 2em;
+    display: flex;
+}
+.formAddMsg label{
+    flex: 1;
+}
+.formAddMsg input{
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    padding: .5em;
+    border: 1px solid #fff;
+    border-radius: .5em;
+}
+.formAddMsg input::placeholder{
+    color: #ddd;
+}
+.formAddMsg button{
+    margin-left: 1em;
+    padding: .5em;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5em;
+    border: none;
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: transparent;
+}
+
+@media (max-width: 700px) {
+    .formAddMsg{
+        width: 95%;
+    }
+}

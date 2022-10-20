@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import User from '../models/User.js';
 
-const getUserByToken = async (token)=>{
+const getUserByToken = async (token, res)=>{
     try {
         const checkToken = await jwt.verify(token, process.env.SECRET_TOKEN);
 

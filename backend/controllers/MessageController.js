@@ -15,7 +15,7 @@ const MessageControler = {
             }
 
             const token = await getToken(req);
-            const user = await getUserByToken(token);
+            const user = await getUserByToken(token, res);
 
             if(!user){
                 return res.status(404).json({ error: 'Usuário não encontrado!' });
@@ -30,16 +30,16 @@ const MessageControler = {
             const newMessage = {
                 text,
                 userName: user.name,
-                userId: user.id,
+                userNumber: user.number,
+                userNumber: user.number,
                 GroupId: group.id
             }
 
             const message = await Message.create(newMessage);
 
-            return res.status(201).json({
-                success: 'Mensagem enviada!',
+            return res.status(201).json(
                 message
-            });
+            );
         
         } catch (error) {
             console.log(error);
@@ -52,7 +52,7 @@ const MessageControler = {
         try {
             const { id } = req.params;
             const token = await getToken(req);
-            const user = await getUserByToken(token);
+            const user = await getUserByToken(token, res);
 
             const group = await Group.findOne({ where: { id } });
 
@@ -62,7 +62,7 @@ const MessageControler = {
 
             const messagesGroup = await Message.findAll({ where: { GroupId: id } });
 
-            return res.json(messagesGroup);
+            return res.json({group, messagesGroup});
 
         } catch (error) {
             console.log(error);

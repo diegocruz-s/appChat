@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { groupsUser } from "../services/groupService";
+import { createMessage, groupsUser, messages } from "../services/groupService";
+import { api } from "../utils/api";
 
 const initialState = {
     error: null,
@@ -7,6 +8,7 @@ const initialState = {
     loading: false,
     group: {},
     groups: [],
+    messages: null
 }
 
 export const getGroupsUser = createAsyncThunk(
@@ -21,6 +23,33 @@ export const getGroupsUser = createAsyncThunk(
     }
 )
 
+export const messagesGroup = createAsyncThunk(
+    'group/messages', 
+    async (id, thunkAPI) => {
+        console.log('ok slice')
+
+
+        const token = await thunkAPI.getState().authSlice.user.token;
+
+        const data = await messages(id, token);
+
+        return data;
+    }
+)
+
+export const createMsg = createAsyncThunk(
+    'group/message', 
+    async (msg, thunkAPI) => {
+
+        const token = await thunkAPI.getState().authSlice.user.token;
+
+        const data = await createMessage(msg, token);
+
+        return data;
+
+    }
+)
+
 const groupsSlice = createSlice({
     name: 'groupSlice',
     initialState,
@@ -29,6 +58,7 @@ const groupsSlice = createSlice({
             state.error = null;
             state.loading = false;
             state.success = null; 
+            state.messages = null;
         }
     },
     extraReducers(builder){
@@ -44,6 +74,19 @@ const groupsSlice = createSlice({
                 state.success = null;
                 state.groups = action.payload;
             })
+            .addCase(messagesGroup.pending, (state)=>{
+                state.error = null;
+                state.loading = true;
+                state.success = null;
+            })
+            .addCase(messagesGroup.fulfilled, (state,action)=>{
+                state.error = null;
+                state.loading = false;
+                state.success = null;
+                state.messages = action.payload.messagesGroup;
+                state.group = action.payload.group;
+            })
+            
     }
 })
 

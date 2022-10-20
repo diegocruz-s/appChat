@@ -22,7 +22,7 @@ const GroupController = {
             }
 
             const token = await getToken(req);
-            const user = await getUserByToken(token);
+            const user = await getUserByToken(token, res);
 
             if(!user){
                 return res.status(404).json({ error: 'Usuário não encontrado!' });
@@ -48,7 +48,7 @@ const GroupController = {
 
     async allGroupsUser (req,res){
         const token = await getToken(req);
-        const user = await getUserByToken(token);
+        const user = await getUserByToken(token, res);
 
         if(!user){
             return res.status(404).json({ error: 'Usuário não encontrado!' });
@@ -74,7 +74,7 @@ const GroupController = {
             const { id } = req.params;
 
             const token = await getToken(req);
-            const user = await getUserByToken(token);
+            const user = await getUserByToken(token, res);
 
             if(!user){
                 return res.status(404).json({ error: 'Usuário não encontrado!' });

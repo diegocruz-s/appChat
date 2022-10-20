@@ -5,7 +5,7 @@ import './models/User.js';
 import './models/Group.js';
 import './models/Message.js';
 
-server.listen(5000, ()=>{
+server.listen(5000, 'localhost', ()=>{
     console.log('Server running on PORT 5000...')
 })
 
