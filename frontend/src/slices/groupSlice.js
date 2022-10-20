@@ -26,8 +26,6 @@ export const getGroupsUser = createAsyncThunk(
 export const messagesGroup = createAsyncThunk(
     'group/messages', 
     async (id, thunkAPI) => {
-        console.log('ok slice')
-
 
         const token = await thunkAPI.getState().authSlice.user.token;
 
@@ -124,7 +122,6 @@ const groupsSlice = createSlice({
             .addCase(createGroup.rejected, (state, action)=>{
                 state.loading = false;
                 state.success = null;
-                console.log(action.payload)
                 state.error = action.payload;
             })
             .addCase(createGroup.fulfilled, (state, action)=>{

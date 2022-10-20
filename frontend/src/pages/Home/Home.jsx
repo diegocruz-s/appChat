@@ -113,11 +113,16 @@ const Home = () => {
                         {groups.map(group => (
                             <div className="group"  key={group.id}>
                                 <Link to={`group/${group.id}`} className="datasGroup">
-                                    <p className='groupName'>{group.name}</p>
-                                    {(user && user.number === group.numberUserCreate) ? (
-                                        <p className='numberContact'>{group.numberUserCreate}</p>
+                                    {(user && user.userName === group.userName) ? (
+                                        <p className='groupName'>{group.name}</p>
                                     ) : (
+                                        <p className='groupName'>{group.userName}</p>
+                                    )}
+
+                                    {(user && user.userNumber === group.numberUserCreate) ? (
                                         <p className='numberContact'>{group.numberContact}</p>
+                                    ) : (
+                                        <p className='numberContact'>{group.numberUserCreate}</p>
                                     )}
                                 </Link>
                                 <BsFillTrashFill onClick={() => handleDelete(group.id)} className='svgDelete' />

@@ -4,6 +4,7 @@ import User from './User.js';
 
 const Group = db.define('Group', {
     name: { type: DataTypes.STRING, require: true, allowNull: false },
+    userName: { type: DataTypes.STRING, require: true, allowNull: false },
     numberUserCreate: { type: DataTypes.INTEGER, require: true, allowNull: false },
     numberContact: { type: DataTypes.INTEGER, require: true, allowNull: false },
 })

@@ -22,8 +22,6 @@ const Group = ()=>{
     const [error, setError] = useState(null);
     
     const { user } = useSelector(state => state.authSlice);
-    console.log('msg', message)
-    console.log('msg', message.length)
     const { id } = useParams(); 
     // text,
     // userName: user.name,
@@ -74,7 +72,11 @@ const Group = ()=>{
     return(
         <div className="groupId">
             <div className="headGroup">
+            {(user && user.userName === group.userName) ? (
                 <h2>{group.name}</h2>
+            ) : (
+                <h2>{group.userName}</h2>
+            )}
             </div>
             <div className="allMsgs">
                 {(messages && messages.length > 0) && (

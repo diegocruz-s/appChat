@@ -33,7 +33,11 @@ const GroupController = {
             }
 
             const newGroup = {
-                name, numberContact, numberUserCreate: user.number, UserId: user.id
+                name, 
+                numberContact, 
+                numberUserCreate: user.number, 
+                UserId: user.id,
+                userName: user.name
             }
 
             const group = await Group.create(newGroup);
@@ -98,7 +102,8 @@ const GroupController = {
             });
 
         } catch (error) {
-            
+            console.log(error);
+            return res.status(500).json({ error: 'Internal erorr!' });
         }
 
     },

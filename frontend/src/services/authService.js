@@ -20,8 +20,6 @@ export const loginUser = async (user) => {
         .then(resp => resp.data)
         .catch(resp => resp.response.data);
 
-    console.log('res', res);
-
     if(res.token){
         localStorage.setItem('user', JSON.stringify(res));
     }

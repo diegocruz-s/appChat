@@ -14,6 +14,10 @@ const AuthController = {
             return res.status(422).json({ error: 'Dados inválidos!' });
         }
 
+        if(password.length < 6){
+            return res.status(422).json({ error: 'Senha inválida(mínimo 6 caracteres)!' });
+        }
+
         if(!regNumber.test(number)){
             return res.status(422).json({ error: 'Número incorreto!' });
         }
@@ -55,7 +59,7 @@ const AuthController = {
         }
 
         try {
-            const user = await User.findOne({ where: { number } });
+            const user = await User.findOne({ where: { number } }); 
 
             if(!user){
                 return res.status(404).json({ error: 'Autenticação inválida!' });
@@ -82,10 +86,6 @@ const AuthController = {
         }
 
     },
-
-    async test (req,res){
-        res.json({ message: 'Ok checkAuth!' });
-    }
 
 }
 
