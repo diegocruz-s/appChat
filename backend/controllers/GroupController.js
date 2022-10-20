@@ -92,7 +92,10 @@ const GroupController = {
 
             await group.destroy();
 
-            return res.status(200).json({ message: 'Grupo excluído com sucesso!' });
+            return res.status(200).json({ 
+                success: 'Grupo excluído com sucesso!',
+                group
+            });
 
         } catch (error) {
             

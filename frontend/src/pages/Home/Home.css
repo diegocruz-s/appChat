@@ -71,6 +71,22 @@
 .home .groups .group{
     margin-bottom: 2em;
     padding-left: 1em;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.svgDelete{
+    display: none;
+    cursor: pointer;
+}
+.home .groups .group:hover > .svgDelete{
+    display: flex;
+}
+.home .groups .group svg{
+    color: #fff;
+    margin-right: 1.6em;
+    font-size: 1.3em;
 }
 .home .groups .group a{
     text-decoration: none;
@@ -81,4 +97,10 @@
 }
 .numberContact{
     font-size: 1.2em;
+}
+.loadingHome{
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 1em;
 }

@@ -2,16 +2,17 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../slices/authSlice';
-import { getGroupsUser } from '../../slices/groupSlice';
+import { createGroup, deleteGroup, getGroupsUser, resetStatesGroup } from '../../slices/groupSlice';
 import { Link } from 'react-router-dom';
-import { BsBoxArrowInRight } from 'react-icons/bs';
+import { BsBoxArrowInRight, BsFillTrashFill } from 'react-icons/bs';
 import './Home.css';
+import Message from '../../components/Message';
 import { useRef } from 'react';
 
 const Home = () => {
 
     const dispatch = useDispatch();
-    const { groups, loading: loadingGroups } = useSelector(state => state.groupSlice);
+    const { groups, loading: loadingGroups, error, success } = useSelector(state => state.groupSlice);
     const { user } = useSelector(state => state.authSlice);
     const [showFormCreate, setShowFormCreate] = useState(false);
     const [nameGroup, setNameGroup] = useState('');
@@ -28,7 +29,7 @@ const Home = () => {
 
     if(loadingGroups){
         return (
-            <p>Carregando...</p>
+            <p className='loadingHome'>Carregando...</p>
         )
     }
 
@@ -51,7 +52,18 @@ const Home = () => {
             name: nameGroup,
             numberContact: numberGroup
         }
-        console.log(newGroup)
+        
+        dispatch(createGroup(newGroup));
+
+        setShowFormCreate(false)
+        btn.current.textContent = '+'
+        setNameGroup('');
+        setNumberGroup('');
+
+    }
+
+    const handleDelete = async (id) => {
+        dispatch(deleteGroup(id));
     }
 
     return(
@@ -85,7 +97,15 @@ const Home = () => {
                 </div>
                 
             )}
-            
+
+
+            {error && (
+                <Message msg={error} type='error' />
+            )}
+
+            {success && (
+                <Message msg={success} type='success' />
+            )}
 
             <div className="groups">
                 {( groups && groups.length > 0 ) ? (
@@ -99,13 +119,13 @@ const Home = () => {
                                     ) : (
                                         <p className='numberContact'>{group.numberContact}</p>
                                     )}
-                                    
                                 </Link>
-                            </div>
+                                <BsFillTrashFill onClick={() => handleDelete(group.id)} className='svgDelete' />
+                            </div>           
                         ))}  
                     </>                      
                 ) : (
-                    <p>Você não tem nenhum contato...</p>
+                    <p className='nomsg'>Você não tem nenhum contato...</p>
                 )}
             </div>
 

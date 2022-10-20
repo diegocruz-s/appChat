@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createMessage, groupsUser, messages } from "../services/groupService";
+import { createGroupService, createMessage, deleteGroupService, groupsUser, messages } from "../services/groupService";
 import { api } from "../utils/api";
 
 const initialState = {
@@ -35,7 +35,7 @@ export const messagesGroup = createAsyncThunk(
 
         return data;
     }
-)
+);
 
 export const createMsg = createAsyncThunk(
     'group/message', 
@@ -45,8 +45,38 @@ export const createMsg = createAsyncThunk(
 
         const data = await createMessage(msg, token);
 
+        if(data.error){
+            return thunkAPI.rejectWithValue(data.error);
+        }
+
         return data;
 
+    }
+);
+
+export const createGroup = createAsyncThunk(
+    'group/create',
+    async (group, thunkAPI)=>{
+        const token = thunkAPI.getState().authSlice.user.token;
+
+        const data = await createGroupService(group, token);
+
+        if(data.error){
+            return thunkAPI.rejectWithValue(data.error);
+        }
+        
+        return data;
+    }
+);
+
+export const deleteGroup = createAsyncThunk(
+    'group/delete',
+    async (id, thunkAPI) => {
+        const token = thunkAPI.getState().authSlice.user.token;
+
+        const data = await deleteGroupService(id, token);
+
+        return data;
     }
 )
 
@@ -86,7 +116,29 @@ const groupsSlice = createSlice({
                 state.messages = action.payload.messagesGroup;
                 state.group = action.payload.group;
             })
-            
+            .addCase(createGroup.pending, (state)=>{
+                state.error = null;
+                state.loading = true;
+                state.success = null;
+            })
+            .addCase(createGroup.rejected, (state, action)=>{
+                state.loading = false;
+                state.success = null;
+                console.log(action.payload)
+                state.error = action.payload;
+            })
+            .addCase(createGroup.fulfilled, (state, action)=>{
+                state.error = null;
+                state.loading = false;
+                state.success = action.payload.success;
+                state.groups.push(action.payload.group);
+            })
+            .addCase(deleteGroup.fulfilled, (state, action)=>{
+                state.error = null;
+                state.loading = false;
+                state.success = action.payload.success;
+                state.groups = state.groups.filter(group=> group.id !== action.payload.group.id)
+            })
     }
 })
 
