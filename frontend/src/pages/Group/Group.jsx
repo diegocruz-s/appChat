@@ -82,7 +82,7 @@ const Group = ()=>{
                 {(messages && messages.length > 0) && (
                     <>
                         {messages.map(msg => (
-                            <NewMessage msg={msg} />    
+                            <NewMessage msg={msg} key={msg.id} />    
                         ))}
 
                     </>
@@ -91,7 +91,7 @@ const Group = ()=>{
                 {(message && message.length > 0) && (
                     <>
                         {message.map(msg => (
-                            <NewMessage msg={msg} />    
+                            <NewMessage msg={msg} key={msg.id} />    
                         ))}
                     </>
                 )}
